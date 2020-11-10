@@ -4,9 +4,9 @@
 import roslib
 import rospy
 
-from keras.models import load_model
 import numpy as np
 import pandas as pd
+from keras.models import load_model
 from sensor_msgs.msg import LaserScan
 from std_msgs.msg import Float32MultiArray
 
@@ -28,3 +28,6 @@ def detect_torso():
   rospy.Subscriber("/scan", LaserScan, callback)
   print("ok")
   rospy.spin()
+
+if __name__ == '__main__':
+  detect_torso()
