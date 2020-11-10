@@ -1,16 +1,16 @@
-#!/usr/bin/env python
+#!/home/daidai/learning/tf12/bin/python
 #-*- coding: utf-8 -*-
 
 import roslib
 import rospy
-
+import h5py
 import numpy as np
 import pandas as pd
 from keras.models import load_model
 from sensor_msgs.msg import LaserScan
 from std_msgs.msg import Float32MultiArray
 
-model = load_model("detected_human_model.h5")
+model = load_model("/home/daidai/catkin_ws/src/detected_human/scripts/detected_human_model.h5")
 MAX_RANGE = 6
 DATASIZE  = 725
 
