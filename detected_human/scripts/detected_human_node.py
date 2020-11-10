@@ -18,10 +18,10 @@ x_desire = 0
 y_desire = 0
 
 def callback(data):
-  l_data = pd.DataFrame(data.ranges).fillna(0)
-  l_data = np.reshape(l_data["l"].values/MAX_RANGE)
-  result = model.predict(l_data)
-  print(result)
+  l_pd = pd.DataFrame(data.ranges).fillna(0)
+  l_np = np.reshape(l_pd.values, (1, DATASIZE, 1))
+  pre = model.predict(l_np)
+  pre = np.reshape(pre, -1)  
 
 def detect_torso():
   rospy.init_node("detected_human")
