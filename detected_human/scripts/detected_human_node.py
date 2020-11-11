@@ -19,7 +19,7 @@ class deepLearnModel():
     self.model = load_model("/home/daidai/catkin_ws/src/detected_human/scripts/detected_human_model.h5")
 
   def callback(self, data):
-    l_np = np.nun_to_num(data.ranges)
+    l_np = np.nan_to_num(data.ranges)
     l_np = np.resize(l_np, (1, self.DATASIZE, 1))
     pre = model.predict(l_np/self.MAX_RANGE)
     pre = np.reshape(pre, -1)
