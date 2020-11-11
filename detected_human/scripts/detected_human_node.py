@@ -11,7 +11,6 @@ from sensor_msgs.msg import LaserScan
 from std_msgs.msg import Float32MultiArray
 
 rospy.init_node("detected_human")
-rospy.Subscriber("/scan", LaserScan, callback)
 pub = rospy.Publisher("/human_point", Float32MultiArray, queue_size=10)
 
 model = load_model("/home/daidai/catkin_ws/src/detected_human/scripts/detected_human_model.h5")
@@ -29,6 +28,7 @@ def callback(data):
   print(arr)
 
 def detect_torso():
+  rospy.Subscriber("/scan", LaserScan, callback)
   print("ok")
   rospy.spin()
 
