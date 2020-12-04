@@ -1,6 +1,7 @@
 //for LRF
 #include "ros/ros.h"
 #include "sensor_msgs/LaserScan.h"
+#include "std_msgs/Float32MultiArray.h"
 //for CSV
 #include "fstream"
 
@@ -36,13 +37,15 @@ int main(int argc, char **argv)
   ros::Rate sleep_rate(20);
 
   sub = n.subscribe<sensor_msgs::LaserScan>("/scan", 1000, scanCallback);
+  pub = n.advertise<std_msgs::Float32MultiArray>("/u_cbf", 1000);
 
-  sleep_rate.sleep();
+  std_msgs::Float32MultiArray msg;
+  msg.data = [0, 0.1];
 
-  while(cnt < 1200){
+  pub.publish(msg);
+  while(cnt < 100){
     sleep_rate.sleep();
     ros::spinOnce();
   }
-
  return 0;
 }
