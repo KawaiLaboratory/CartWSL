@@ -35,7 +35,8 @@ int main(int argc, char **argv)
   ros::NodeHandle n;
   ros::Subscriber sub;
   ros::Publisher pub;
-  ros::Rate sleep_rate(20);
+  ros::Rate rate(20);
+  ros::Rate sleep(0.1);
 
   sub = n.subscribe<sensor_msgs::LaserScan>("/scan", 1000, scanCallback);
   pub = n.advertise<std_msgs::Float32MultiArray>("/u_cbf", 1000);
@@ -45,9 +46,11 @@ int main(int argc, char **argv)
   msg.data[0] = 0;
   msg.data[1] = 0.1;
 
-  pub.publish(msg);
+  sleep.sleep();
+
   while(cnt < 100){
-    sleep_rate.sleep();
+    pub.publish(msg);
+    rate.sleep();
     ros::spinOnce();
   }
  return 0;
