@@ -14,13 +14,15 @@ class deepLearnModel():
   def __init__(self):
     self.sub = rospy.Subscriber("/scan", LaserScan, self.callback)
     self.pub = rospy.Publisher("/human_point", Float32MultiArray, queue_size=10)
-    self.MAX_RANGE = 6
+    self.MAX_RANGE = 5.7
+    self.MIN_RANGE = 0.02
     self.DATASIZE  = 726
     self.model = load_model("/home/daidai/catkin_ws/src/detected_human/scripts/detected_human_model.h5")
 
   def callback(self, data):
-    print("callbacked")
     l_np = np.nan_to_num(data.ranges)
+    l_np = np.where(l_np < self.MIN_RANGE, 0, l_np)
+    l_np = np.where(l_np > self.MAX_RANGE, 0, l_np)
     l_np = np.resize(l_np, (1, self.DATASIZE, 1))
     pre = self.model.predict(l_np/self.MAX_RANGE)
     pre = np.reshape(pre, -1)
