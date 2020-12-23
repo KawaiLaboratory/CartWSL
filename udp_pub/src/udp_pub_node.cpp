@@ -42,7 +42,7 @@ int main(int argc, char **argv)
   std_msgs::Float32MultiArray msg;
   msg.data.resize(2);
   msg.data[0] = 0;
-  msg.data[1] = 0.1;
+  msg.data[1] = -0.1;
 
   ros::Time start = ros::Time::now();
   ros::Time now = ros::Time::now();
