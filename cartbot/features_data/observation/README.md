@@ -1,0 +1,1 @@
+ここに「rosrun cartbot observation」で保存した観測データが保存される。観測データは日付ごとに分けられる。

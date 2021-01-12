@@ -1,0 +1,6 @@
+<launch>
+    <!-- 検知だけでなく、本体を動かす場合、 roslaunch turtlebot_bringup minimal.launch も使うこと -->
+    <!--<node pkg="urg_node" name="urg_node" type="urg_node" args="_serial_port:=/dev/ttyACM0"/>-->
+    <node pkg="cartbot" name="main" type="main" />
+    <node pkg="cartbot" name="detection_leg_kf" type="detection_leg_kf.py" />
+</launch>
